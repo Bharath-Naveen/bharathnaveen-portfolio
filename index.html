@@ -240,7 +240,10 @@ section.block{padding:64px 0}
 .pcard .pwhat{color:var(--ink-soft); font-size:15px; margin-top:9px; flex:1}
 .pcard .pwhat b{color:var(--ink); font-weight:600}
 .pcard .pstack{display:flex; flex-wrap:wrap; gap:6px; margin-top:16px}
+.pcard{position:relative}
 .pcard .pfoot{margin-top:18px; padding-top:15px; border-top:1px solid var(--line); display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+.pcard .pfoot .link::after{content:""; position:absolute; inset:0; z-index:1; border-radius:16px}
+.pcard:hover .pfoot .link{text-decoration:underline}
 
 /* rail motion + polish */
 .pcard{transition:border-color .18s ease, box-shadow .22s ease, transform .22s cubic-bezier(.22,.61,.36,1)}
@@ -746,19 +749,22 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   Array.prototype.forEach.call(document.querySelectorAll('.proj-rail'), function(rail){
     rail.classList.add('grab');
-    var down=false, sx=0, sl=0, moved=0;
+    var down=false, sx=0, sl=0, moved=false;
     rail.addEventListener('pointerdown', function(e){
       if(e.pointerType==='touch') return;
-      down=true; moved=0; sx=e.clientX; sl=rail.scrollLeft; rail.classList.add('dragging');
-      try{ rail.setPointerCapture(e.pointerId); }catch(_){}
+      if(e.button!==undefined && e.button!==0) return;
+      down=true; moved=false; sx=e.clientX; sl=rail.scrollLeft;
     });
     rail.addEventListener('pointermove', function(e){
-      if(!down) return; var dx=e.clientX - sx; moved=Math.max(moved, Math.abs(dx)); rail.scrollLeft = sl - dx;
+      if(!down) return;
+      var dx=e.clientX - sx;
+      if(!moved && Math.abs(dx)>5){ moved=true; rail.classList.add('dragging'); }
+      if(moved){ rail.scrollLeft = sl - dx; }
     });
     function end(){ if(!down) return; down=false; rail.classList.remove('dragging'); }
-    rail.addEventListener('pointerup', end);
-    rail.addEventListener('pointercancel', end);
-    rail.addEventListener('click', function(e){ if(moved>6){ e.preventDefault(); e.stopPropagation(); } moved=0; }, true);
+    window.addEventListener('pointerup', end);
+    window.addEventListener('pointercancel', end);
+    rail.addEventListener('click', function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } }, true);
     if(!reduce && 'IntersectionObserver' in window){
       rail.classList.add('js-anim');
       var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(en.isIntersecting){ rail.classList.add('reveal'); io.disconnect(); } }); }, {threshold:.12});
