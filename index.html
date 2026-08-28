@@ -217,6 +217,31 @@ section.block{padding:64px 0}
 .link:hover svg{transform:translate(2px,-2px)}
 .note{font-size:13px; color:var(--muted)}
 
+/* ---- Projects rail ---- */
+.rail-head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:22px}
+.rail-head .sec-sub{margin-bottom:0}
+.rail-arrows{display:flex; gap:8px; flex:none}
+.rail-btn{width:42px; height:42px; border-radius:11px; border:1px solid var(--line-strong); background:var(--surface); color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color .15s, color .15s}
+.rail-btn:hover{border-color:var(--accent); color:var(--accent-strong)}
+.rail-btn:disabled{opacity:.35; cursor:default; border-color:var(--line); color:var(--muted)}
+.rail-btn svg{width:20px; height:20px}
+@media (max-width:640px){ .rail-arrows{display:none} }
+.proj-rail{display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding:4px 4px 16px; margin:0 -4px}
+.proj-rail:focus-visible{outline:2.5px solid var(--accent); outline-offset:4px; border-radius:8px}
+.proj-rail::-webkit-scrollbar{height:8px}
+.proj-rail::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:99px}
+.proj-rail::-webkit-scrollbar-track{background:transparent}
+.pcard{flex:0 0 clamp(288px, 84vw, 348px); scroll-snap-align:start; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; transition:border-color .15s, box-shadow .15s}
+.pcard:hover{border-color:var(--line-strong); box-shadow:var(--shadow)}
+.pcard .ptop{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px}
+.pcard .pdate{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted); white-space:nowrap}
+.pcard .tag.wip{background:transparent; border:1px dashed var(--line-strong); color:var(--muted)}
+.pcard h3{font-size:20px; letter-spacing:-.01em}
+.pcard .pwhat{color:var(--ink-soft); font-size:15px; margin-top:9px; flex:1}
+.pcard .pwhat b{color:var(--ink); font-weight:600}
+.pcard .pstack{display:flex; flex-wrap:wrap; gap:6px; margin-top:16px}
+.pcard .pfoot{margin-top:18px; padding-top:15px; border-top:1px solid var(--line); display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+
 /* ---- Experience ---- */
 .xp{display:grid; grid-template-columns:1fr; gap:0; border-left:2px solid var(--line); margin-left:6px}
 .xrow{position:relative; padding:0 0 34px 30px}
@@ -404,94 +429,81 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 <section class="block" id="work">
   <div class="wrap">
     <div class="sec-head"><span class="idx">01</span><h2>Selected work</h2></div>
-    <p class="sec-sub">End-to-end data science and machine learning projects, from <b>exploratory analysis and feature engineering</b> through to <b>deployed, production systems</b>. Each one leads with the problem it solves; the technical detail sits underneath.</p>
+    <div class="rail-head">
+      <p class="sec-sub">Seven builds, from production ML systems to data pipelines and databases. Swipe, or use the arrows; each card links straight to its repo.</p>
+      <div class="rail-arrows">
+        <button class="rail-btn" data-prev aria-label="Previous projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="rail-btn" data-next aria-label="Next projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
     <!-- ============================================================
-         SELECTED WORK
-         To ADD a project: copy one whole <article class="card">...</article>
-         block below and paste it inside this <div class="cards"> section,
-         then change the title, tags, description, metrics, and GitHub link.
-         Use class="card feature" for a big full-width card, or class="card"
-         for a half-width one.
+         PROJECT RAIL. To ADD a project: copy one <article class="pcard">
+         ... </article> block below, paste it in, and edit the tag, date,
+         title, description, tech pills, and the GitHub link.
     ============================================================ -->
-    <div class="cards">
+    <div class="proj-rail" tabindex="0" aria-label="Projects, scroll horizontally">
 
       <!-- PROJECT CARD -->
-      <article class="card feature">
-        <div class="card-tags">
-          <span class="tag">Machine Learning · NLP</span>
-          <span class="tag">Containerized · AWS</span>
-          <span class="tag">Production-deployed</span>
-        </div>
+      <article class="pcard">
+        <div class="ptop"><span class="tag">Machine Learning</span><span class="pdate">Apr 2026</span></div>
         <h3>Phishing Detection System</h3>
-        <p class="what">An ML system that catches <b>fake and malicious websites the moment they appear</b>, before a blocklist ever hears about them. It reads a live page the way an analyst would, then returns a clear <b>safe / suspicious / phishing</b> verdict with the reasons behind it. Built as a containerized microservice and deployed on AWS, with supervised models, LLM-based brand-impersonation detection, and full model evaluation.</p>
-        <div class="card-mid">
-          <div class="metric"><div class="mnum">0.933</div><div class="mlab">Best model ROC-AUC</div></div>
-          <div class="metric"><div class="mnum">50K+</div><div class="mlab">URL samples</div></div>
-          <div class="metric"><div class="mnum">4</div><div class="mlab">Models benchmarked</div></div>
-          <div class="metric"><div class="mnum">4-layer</div><div class="mlab">Analysis pipeline</div></div>
-        </div>
-        <div class="stack">
-          <span class="pill">Python</span><span class="pill">LightGBM</span><span class="pill">XGBoost</span><span class="pill">Random Forest</span><span class="pill">Feature engineering</span><span class="pill">Playwright</span><span class="pill">BeautifulSoup</span><span class="pill">LLM integration</span><span class="pill">Streamlit</span><span class="pill">Docker</span><span class="pill">AWS ECR/ECS</span>
-        </div>
-        <div class="card-foot">
-          <a class="link" href="https://github.com/Bharath-Naveen" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-          <span class="note">Explainable verdicts through a deterministic Evidence Adjudication Layer.</span>
-        </div>
+        <p class="pwhat">Catches fake and malicious sites the moment they appear and returns a clear <b>safe / suspicious / phishing</b> verdict with the reasons behind it. A layered pipeline: ML triage, live page capture, DOM analysis, and a deterministic adjudication layer. Containerized and deployed on AWS.</p>
+        <div class="pstack"><span class="pill">Python</span><span class="pill">LightGBM</span><span class="pill">XGBoost</span><span class="pill">Playwright</span><span class="pill">Streamlit</span><span class="pill">Docker</span><span class="pill">AWS</span></div>
+        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/containerized-phishing-project" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
-      <article class="card feature">
-        <div class="card-tags">
-          <span class="tag live"><span class="dot"></span>Live in production</span>
-          <span class="tag">Data Engineering · Serverless AWS</span>
-          <span class="tag">University of Arizona</span>
-        </div>
+      <article class="pcard">
+        <div class="ptop"><span class="tag live"><span class="dot"></span>Live</span><span class="pdate">Aug 2026</span></div>
         <h3>Cohort Analytics Platform</h3>
-        <p class="what">A live analytics platform the university relies on to <b>track student cohorts</b>, built on a serverless AWS backend that turns raw records into dashboards staff use every day. I built the data and cloud layer end to end: the ETL pipelines, the database access patterns, and the CI/CD deployment behind it, working directly with university stakeholders to ship it.</p>
-        <div class="card-mid">
-          <div class="metric"><div class="mnum">Live</div><div class="mlab">In daily production use</div></div>
-          <div class="metric"><div class="mnum">Serverless</div><div class="mlab">Lambda ETL + DynamoDB</div></div>
-          <div class="metric"><div class="mnum">CI/CD</div><div class="mlab">Multi-environment pipeline</div></div>
-        </div>
-        <div class="stack">
-          <span class="pill">AWS Lambda</span><span class="pill">API Gateway</span><span class="pill">DynamoDB</span><span class="pill">DAO patterns</span><span class="pill">Containerized ETL</span><span class="pill">CI/CD</span>
-        </div>
-        <div class="card-foot">
-          <a class="link" href="https://cohort.bi.arizona.edu" target="_blank" rel="noopener">Visit the live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-          <span class="note">Running at cohort.bi.arizona.edu.</span>
-        </div>
+        <p class="pwhat">A <b>live platform</b> advisors use to see whether student cohorts are on track, behind, or ahead of their degree pace. I built the serverless data and cloud layer end to end: the ETL, the DynamoDB access, and the CI/CD deploy.</p>
+        <div class="pstack"><span class="pill">AWS Lambda</span><span class="pill">DynamoDB</span><span class="pill">Julia ETL</span><span class="pill">Docker / ECS</span><span class="pill">CI/CD</span></div>
+        <div class="pfoot"><a class="link" href="https://cohort.bi.arizona.edu" target="_blank" rel="noopener">Live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="link" href="https://github.com/Bharath-Naveen/cohort-analytics" target="_blank" rel="noopener">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
-      <article class="card">
-        <div class="card-tags">
-          <span class="tag">Data Analytics · SQL</span>
-          <span class="tag">Data modeling</span>
-        </div>
-        <h3>BN Motors Database</h3>
-        <p class="what">An end-to-end dealership database that turns raw inventory, sales, and customer records into <b>business-ready analytics</b>. Designed from the ER model up into a fully normalized schema, with complex SQL (joins, aggregations, window functions) driving the reporting views a decision-maker can act on.</p>
-        <div class="stack">
-          <span class="pill">SQL</span><span class="pill">ER modeling</span><span class="pill">Schema design</span><span class="pill">Window functions</span><span class="pill">Business reporting</span>
-        </div>
-        <div class="card-foot">
-          <a class="link" href="https://github.com/Bharath-Naveen" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-        </div>
+      <article class="pcard">
+        <div class="ptop"><span class="tag">NLP</span><span class="pdate">Feb 2026</span></div>
+        <h3>YouTube Comment Spam Detector</h3>
+        <p class="pwhat">Flags harmful YouTube comments, <b>phishing scams, adult-bait bots, and engagement spam</b>, and sorts them into categories. Built with weak-supervision labeling and a TF-IDF model tuned for high precision on the comments that matter most.</p>
+        <div class="pstack"><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">TF-IDF</span><span class="pill">scikit-learn</span><span class="pill">YouTube API</span></div>
+        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/youtube-comment-spam-detector" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
-      <article class="card">
-        <div class="card-tags">
-          <span class="tag">Predictive Modeling</span>
-          <span class="tag">Classification · Imbalanced data</span>
-        </div>
+      <article class="pcard">
+        <div class="ptop"><span class="tag">Predictive Modeling</span><span class="pdate">Mar 2026</span></div>
         <h3>Loan Default Prediction</h3>
-        <p class="what">A model that <b>flags which loans are likely to default</b> so a lender can price risk before it hits the books. Built with careful exploratory analysis, feature engineering on economic variables, and model selection tuned to the false-positive / false-negative trade-off that actually costs money.</p>
-        <div class="stack">
-          <span class="pill">Python</span><span class="pill">Logistic Regression</span><span class="pill">Random Forest</span><span class="pill">XGBoost</span><span class="pill">EDA</span><span class="pill">Feature engineering</span><span class="pill">ROC-AUC / precision / recall</span>
-        </div>
-        <div class="card-foot">
-          <a class="link" href="https://github.com/Bharath-Naveen" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-        </div>
+        <p class="pwhat">Predicts which borrowers are likely to <b>default</b> from their financial and demographic profile, so a lender can flag risk early. Compared five models and surfaced the real risk drivers: low balances, short employment, and thin credit history.</p>
+        <div class="pstack"><span class="pill">Python</span><span class="pill">Gradient Boosting</span><span class="pill">Random Forest</span><span class="pill">SVM</span><span class="pill">scikit-learn</span></div>
+        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/german-loan-default-ml-" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+      </article>
+
+      <!-- PROJECT CARD -->
+      <article class="pcard">
+        <div class="ptop"><span class="tag">SQL &middot; Data modeling</span><span class="pdate">Oct 2025</span></div>
+        <h3>BN Motors Database</h3>
+        <p class="pwhat">A full relational database for a <b>multi-store car dealership</b>, covering sales, service, financing, and parts, with analytics for inventory aging, profit by store, finance penetration, and lead-to-sale conversion.</p>
+        <div class="pstack"><span class="pill">MySQL</span><span class="pill">SQL</span><span class="pill">ER modeling</span><span class="pill">Window functions</span></div>
+        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/bn_motors_SQL" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+      </article>
+
+      <!-- PROJECT CARD -->
+      <article class="pcard">
+        <div class="ptop"><span class="tag wip">In progress</span><span class="pdate">Jun 2026</span></div>
+        <h3>AutoRisk</h3>
+        <p class="pwhat">A <b>reliability score for used cars</b> in a student's budget. Pulls NHTSA complaints, recalls, and investigations, clusters the failure patterns, and models depreciation to flag which cheap cars are actually safe bets. Actively building.</p>
+        <div class="pstack"><span class="pill">Python</span><span class="pill">XGBoost</span><span class="pill">NLP</span><span class="pill">Streamlit</span></div>
+        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/AutoRisk" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+      </article>
+
+      <!-- PROJECT CARD -->
+      <article class="pcard">
+        <div class="ptop"><span class="tag">Data Engineering</span><span class="pdate">Mar 2026</span></div>
+        <h3>YouTube Analytics Pipeline</h3>
+        <p class="pwhat">An automated pipeline that pulls <b>YouTube video and comment data</b> through the API and structures it for engagement and sentiment analysis.</p>
+        <div class="pstack"><span class="pill">Python</span><span class="pill">YouTube API</span><span class="pill">Data pipeline</span><span class="pill">JSON</span></div>
+        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/youtube-analytics-pipeline" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
     </div>
@@ -618,9 +630,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         </div>
       </div>
 
-    </div>
-    <p class="learn-note">Always adding more. Actively upskilling on <a href="https://www.datacamp.com" target="_blank" rel="noopener">DataCamp</a>.</p>
-  </div>
+    </div>  </div>
 </section>
 
 <section class="block tint" id="about">
@@ -700,5 +710,17 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
   Array.prototype.forEach.call(document.querySelectorAll('[data-resume]'), function(o){ o.addEventListener('click', open); });
   Array.prototype.forEach.call(modal.querySelectorAll('[data-close]'), function(c){ c.addEventListener('click', close); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !modal.hidden){ close(); } });
+})();
+(function(){
+  var rails=document.querySelectorAll('.proj-rail');
+  Array.prototype.forEach.call(rails, function(rail){
+    var sec=rail.closest('section'); if(!sec) return;
+    var prev=sec.querySelector('[data-prev]'), next=sec.querySelector('[data-next]');
+    function step(){ var c=rail.querySelector('.pcard'); return c ? c.getBoundingClientRect().width + 18 : 320; }
+    function upd(){ if(prev) prev.disabled = rail.scrollLeft <= 4; if(next) next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4; }
+    if(prev) prev.addEventListener('click', function(){ rail.scrollBy({left:-step(), behavior:'smooth'}); });
+    if(next) next.addEventListener('click', function(){ rail.scrollBy({left:step(), behavior:'smooth'}); });
+    rail.addEventListener('scroll', upd, {passive:true}); window.addEventListener('resize', upd); upd();
+  });
 })();
 </script>
