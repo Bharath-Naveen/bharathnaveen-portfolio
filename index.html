@@ -242,6 +242,25 @@ section.block{padding:64px 0}
 .pcard .pstack{display:flex; flex-wrap:wrap; gap:6px; margin-top:16px}
 .pcard .pfoot{margin-top:18px; padding-top:15px; border-top:1px solid var(--line); display:flex; gap:14px; align-items:center; flex-wrap:wrap}
 
+/* rail motion + polish */
+.pcard{transition:border-color .18s ease, box-shadow .22s ease, transform .22s cubic-bezier(.22,.61,.36,1)}
+.pcard:hover{border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 38px -18px color-mix(in srgb, var(--accent) 40%, transparent), var(--shadow)}
+.rail-btn{transition:border-color .15s, color .15s, transform .12s ease}
+.rail-btn:active{transform:scale(.93)}
+.proj-rail.grab{cursor:grab}
+.proj-rail.dragging{cursor:grabbing; scroll-behavior:auto; scroll-snap-type:none; user-select:none}
+@keyframes cardIn{from{opacity:0} to{opacity:1}}
+.proj-rail.js-anim .pcard{opacity:0}
+.proj-rail.js-anim.reveal .pcard{animation:cardIn .5s ease forwards}
+.proj-rail.js-anim.reveal .pcard:nth-child(1){animation-delay:.03s}
+.proj-rail.js-anim.reveal .pcard:nth-child(2){animation-delay:.10s}
+.proj-rail.js-anim.reveal .pcard:nth-child(3){animation-delay:.17s}
+.proj-rail.js-anim.reveal .pcard:nth-child(4){animation-delay:.24s}
+.proj-rail.js-anim.reveal .pcard:nth-child(5){animation-delay:.31s}
+.proj-rail.js-anim.reveal .pcard:nth-child(6){animation-delay:.38s}
+.proj-rail.js-anim.reveal .pcard:nth-child(7){animation-delay:.45s}
+@media (prefers-reduced-motion:reduce){ .pcard:hover{transform:none} .proj-rail.js-anim .pcard{opacity:1} }
+
 /* ---- Experience ---- */
 .xp{display:grid; grid-template-columns:1fr; gap:0; border-left:2px solid var(--line); margin-left:6px}
 .xrow{position:relative; padding:0 0 34px 30px}
@@ -415,7 +434,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
       </div>
       <div class="proof-cell">
         <div class="proof-num">2</div>
-        <div class="proof-lab">Production systems live on AWS: an ML pipeline and an analytics platform</div>
+        <div class="proof-lab">Production systems shipped on AWS: an ML pipeline and an analytics platform</div>
       </div>
       <div class="proof-cell">
         <div class="proof-num">480<small>+</small></div>
@@ -449,16 +468,16 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <h3>Phishing Detection System</h3>
         <p class="pwhat">Catches fake and malicious sites the moment they appear and returns a clear <b>safe / suspicious / phishing</b> verdict with the reasons behind it. A layered pipeline: ML triage, live page capture, DOM analysis, and a deterministic adjudication layer. Containerized and deployed on AWS.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">LightGBM</span><span class="pill">XGBoost</span><span class="pill">Playwright</span><span class="pill">Streamlit</span><span class="pill">Docker</span><span class="pill">AWS</span></div>
-        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/containerized-phishing-project" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <div class="pfoot"><a class="link" href="projects/phishing-detection-system.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
       <article class="pcard">
-        <div class="ptop"><span class="tag live"><span class="dot"></span>Live</span><span class="pdate">Aug 2026</span></div>
+        <div class="ptop"><span class="tag">Serverless AWS</span><span class="pdate">Aug 2026</span></div>
         <h3>Cohort Analytics Platform</h3>
-        <p class="pwhat">A <b>live platform</b> advisors use to see whether student cohorts are on track, behind, or ahead of their degree pace. I built the serverless data and cloud layer end to end: the ETL, the DynamoDB access, and the CI/CD deploy.</p>
+        <p class="pwhat">A <b>production platform</b> advisors at the University of Arizona use to see whether student cohorts are on track, behind, or ahead of their degree pace. I built the serverless data and cloud layer end to end: the ETL, the DynamoDB access, and the CI/CD deploy. Internal tool, access-restricted.</p>
         <div class="pstack"><span class="pill">AWS Lambda</span><span class="pill">DynamoDB</span><span class="pill">Julia ETL</span><span class="pill">Docker / ECS</span><span class="pill">CI/CD</span></div>
-        <div class="pfoot"><a class="link" href="https://cohort.bi.arizona.edu" target="_blank" rel="noopener">Live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="link" href="https://github.com/Bharath-Naveen/cohort-analytics" target="_blank" rel="noopener">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <div class="pfoot"><a class="link" href="projects/cohort-analytics-platform.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
@@ -467,7 +486,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <h3>YouTube Comment Spam Detector</h3>
         <p class="pwhat">Flags harmful YouTube comments, <b>phishing scams, adult-bait bots, and engagement spam</b>, and sorts them into categories. Built with weak-supervision labeling and a TF-IDF model tuned for high precision on the comments that matter most.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">TF-IDF</span><span class="pill">scikit-learn</span><span class="pill">YouTube API</span></div>
-        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/youtube-comment-spam-detector" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <div class="pfoot"><a class="link" href="projects/youtube-comment-spam-detector.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
@@ -476,7 +495,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <h3>Loan Default Prediction</h3>
         <p class="pwhat">Predicts which borrowers are likely to <b>default</b> from their financial and demographic profile, so a lender can flag risk early. Compared five models and surfaced the real risk drivers: low balances, short employment, and thin credit history.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">Gradient Boosting</span><span class="pill">Random Forest</span><span class="pill">SVM</span><span class="pill">scikit-learn</span></div>
-        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/german-loan-default-ml-" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <div class="pfoot"><a class="link" href="projects/loan-default-prediction.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
@@ -485,7 +504,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <h3>BN Motors Database</h3>
         <p class="pwhat">A full relational database for a <b>multi-store car dealership</b>, covering sales, service, financing, and parts, with analytics for inventory aging, profit by store, finance penetration, and lead-to-sale conversion.</p>
         <div class="pstack"><span class="pill">MySQL</span><span class="pill">SQL</span><span class="pill">ER modeling</span><span class="pill">Window functions</span></div>
-        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/bn_motors_SQL" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <div class="pfoot"><a class="link" href="projects/bn-motors-database.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
@@ -494,7 +513,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <h3>AutoRisk</h3>
         <p class="pwhat">A <b>reliability score for used cars</b> in a student's budget. Pulls NHTSA complaints, recalls, and investigations, clusters the failure patterns, and models depreciation to flag which cheap cars are actually safe bets. Actively building.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">XGBoost</span><span class="pill">NLP</span><span class="pill">Streamlit</span></div>
-        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/AutoRisk" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <div class="pfoot"><a class="link" href="projects/autorisk.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
@@ -503,7 +522,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <h3>YouTube Analytics Pipeline</h3>
         <p class="pwhat">An automated pipeline that pulls <b>YouTube video and comment data</b> through the API and structures it for engagement and sentiment analysis.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">YouTube API</span><span class="pill">Data pipeline</span><span class="pill">JSON</span></div>
-        <div class="pfoot"><a class="link" href="https://github.com/Bharath-Naveen/youtube-analytics-pipeline" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <div class="pfoot"><a class="link" href="projects/youtube-analytics-pipeline.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
     </div>
@@ -721,6 +740,30 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
     if(prev) prev.addEventListener('click', function(){ rail.scrollBy({left:-step(), behavior:'smooth'}); });
     if(next) next.addEventListener('click', function(){ rail.scrollBy({left:step(), behavior:'smooth'}); });
     rail.addEventListener('scroll', upd, {passive:true}); window.addEventListener('resize', upd); upd();
+  });
+})();
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  Array.prototype.forEach.call(document.querySelectorAll('.proj-rail'), function(rail){
+    rail.classList.add('grab');
+    var down=false, sx=0, sl=0, moved=0;
+    rail.addEventListener('pointerdown', function(e){
+      if(e.pointerType==='touch') return;
+      down=true; moved=0; sx=e.clientX; sl=rail.scrollLeft; rail.classList.add('dragging');
+      try{ rail.setPointerCapture(e.pointerId); }catch(_){}
+    });
+    rail.addEventListener('pointermove', function(e){
+      if(!down) return; var dx=e.clientX - sx; moved=Math.max(moved, Math.abs(dx)); rail.scrollLeft = sl - dx;
+    });
+    function end(){ if(!down) return; down=false; rail.classList.remove('dragging'); }
+    rail.addEventListener('pointerup', end);
+    rail.addEventListener('pointercancel', end);
+    rail.addEventListener('click', function(e){ if(moved>6){ e.preventDefault(); e.stopPropagation(); } moved=0; }, true);
+    if(!reduce && 'IntersectionObserver' in window){
+      rail.classList.add('js-anim');
+      var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(en.isIntersecting){ rail.classList.add('reveal'); io.disconnect(); } }); }, {threshold:.12});
+      io.observe(rail);
+    }
   });
 })();
 </script>

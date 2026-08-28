@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YouTube Comment Spam Detector — Bharath Naveen</title>
+<meta name="description" content="A classifier that sorts harmful YouTube comments, phishing scams, adult-bait bots, and engagement spam, from the legitimate ones, tuned for high precision on the categories that actually hurt users.">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/project.css">
+</head>
+<body>
+<nav class="pnav"><div class="pnav-in">
+  <a class="back" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg> Bharath <span>Naveen</span></a>
+  <button class="ttoggle" id="themeBtn" aria-label="Toggle light and dark theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</div></nav>
+<header class="phero"><div class="pwrap">
+  <p class="eyebrow">NLP &middot; Machine Learning &middot; February 2026</p>
+  <h1>YouTube Comment Spam Detector</h1>
+  <p class="lead">A classifier that sorts harmful YouTube comments, phishing scams, adult-bait bots, and engagement spam, from the legitimate ones, tuned for high precision on the categories that actually hurt users.</p>
+  <div class="chips"><span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">TF-IDF</span><span class="chip">YouTube Data API</span><span class="chip">pandas</span><span class="chip">Streamlit</span></div>
+  <div class="cta"><a class="btn btn-primary" href="https://github.com/Bharath-Naveen/youtube-comment-spam-detector" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.79-4.58 5.05.36.32.68.95.68 1.92 0 1.39-.01 2.51-.01 2.85 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg> View on GitHub</a><a class="btn btn-ghost" href="../index.html#work">All projects</a></div>
+</div></header>
+<div class="pmetrics"><div class="pmetrics-in"><div class="pmetric"><div class="n">4</div><div class="l">comment categories</div></div><div class="pmetric"><div class="n">Weak</div><div class="l">supervision + manual validation</div></div><div class="pmetric"><div class="n">Precision</div><div class="l">-first evaluation</div></div></div></div>
+<main class="pwrap">
+<section class="psec"><h2>Overview<span class="k">01</span></h2><p>Harmful comments <b>reduce user trust, skew engagement metrics, and expose vulnerable viewers</b> to scams and worse. This project classifies comments into four buckets, <b>phishing_scam</b> (crypto and messaging-app links), <b>adult_bait</b> (automated content traps), <b>engagement_spam</b> (repetitive "who is watching in 2026" patterns), and <b>benign</b>, so the harmful ones can be surfaced and handled.</p></section><section class="psec"><h2>How it works<span class="k">02</span></h2><ol class="steps"><li><b>Collect.</b> Comments are pulled through the YouTube Data API.</li><li><b>Label.</b> Rule-based weak supervision flags obvious spam automatically, then a sampled set is validated by hand against clear guidelines.</li><li><b>Engineer features.</b> Behavioral markers are extracted: link density, emoji frequency, and repetition signatures.</li><li><b>Train.</b> A TF-IDF vectorizer feeds a logistic-regression baseline for multi-class classification, with an optional Streamlit dashboard on top.</li></ol></section><section class="psec"><h2>Evaluation<span class="k">03</span></h2><p>Because a missed scam is far costlier than a false alarm, the model is tuned for <b>high precision on the high-risk categories</b> (phishing and adult-bait), with confusion matrices and error analysis used to show where it succeeds and where it slips.</p></section><section class="psec"><h2>Tech</h2><div class="stacklist"><span class="sk">Python</span><span class="sk">YouTube Data API</span><span class="sk">pandas</span><span class="sk">NumPy</span><span class="sk">scikit-learn</span><span class="sk">TF-IDF</span><span class="sk">Streamlit</span></div></section>
+</main>
+<footer class="pfoot"><div class="pwrap">
+  <a class="back" href="../index.html#work">&larr; Back to all projects</a>
+  <span>&copy; <span id="yr"></span> Bharath Naveen</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('themeBtn');
+function c(){return r.getAttribute('data-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}
+b.addEventListener('click',function(){r.setAttribute('data-theme',c()==='dark'?'light':'dark');});
+var y=document.getElementById('yr'); if(y) y.textContent=new Date().getFullYear();})();
+</script>
+</body></html>
