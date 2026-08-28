@@ -225,16 +225,45 @@ section.block{padding:64px 0}
 .xbody{color:var(--ink-soft); margin-top:8px; font-size:15.5px; max-width:74ch}
 .xbody b{color:var(--ink); font-weight:600}
 
-/* ---- Résumé embed ---- */
-.resume-shell{background:var(--surface-2); border:1px solid var(--line); border-radius:18px; padding:16px; box-shadow:var(--shadow-sm)}
-.tint .resume-shell{background:var(--paper)}
-.resume-pages{display:flex; flex-direction:column; gap:16px; max-height:80vh; overflow-y:auto; border-radius:10px; padding:2px}
-.resume-pages a{display:block; border-radius:8px; transition:box-shadow .15s}
-.resume-pages a:hover{box-shadow:0 0 0 2px var(--accent)}
-.resume-pages img{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:8px; box-shadow:var(--shadow-sm); background:#fff}
-@media (max-width:640px){ .resume-pages{max-height:none; overflow:visible} }
-.resume-actions{display:flex; gap:11px; flex-wrap:wrap; margin-top:16px; align-items:center}
-.resume-hint{font-size:13px; color:var(--muted); font-family:"IBM Plex Mono",monospace}
+/* ---- Résumé card + modal ---- */
+.resume-cta{display:flex; gap:22px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:var(--shadow-sm)}
+.resume-thumb{flex:none; width:128px; height:166px; border-radius:9px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow-sm); display:block; cursor:pointer; position:relative; background:#fff}
+.resume-thumb img{width:100%; height:100%; object-fit:cover; object-position:top center; display:block}
+.resume-thumb::after{content:"View"; position:absolute; inset:auto 0 0 0; padding:14px 6px 6px; text-align:center; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:linear-gradient(transparent, rgba(6,10,16,.78)); opacity:0; transition:opacity .15s}
+.resume-thumb:hover::after{opacity:1}
+.rc-body{flex:1; min-width:0}
+.rc-body h3{font-size:21px}
+.rc-body p{color:var(--muted); font-size:15px; margin-top:7px; max-width:48ch}
+.rc-actions{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap}
+.btn-sm{padding:10px 15px; font-size:14px}
+@media (max-width:560px){
+  .resume-cta{flex-direction:column; align-items:stretch; gap:16px}
+  .resume-thumb{width:100%; height:96px}
+  .rc-actions .btn{flex:1; justify-content:center}
+}
+
+/* modal */
+.modal[hidden]{display:none}
+.modal{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:24px}
+.modal-backdrop{position:absolute; inset:0; background:rgba(6,10,16,.74)}
+.modal-panel{position:relative; z-index:1; background:var(--surface); border:1px solid var(--line); border-radius:14px; width:min(780px,100%); max-height:92vh; display:flex; flex-direction:column; overflow:hidden; box-shadow:var(--shadow)}
+.modal-bar{display:flex; align-items:center; gap:12px; padding:13px 16px; border-bottom:1px solid var(--line)}
+.modal-bar .mt{font-family:"Fraunces",serif; font-weight:600; font-size:18px; margin-right:auto}
+.modal-close{width:36px; height:36px; border-radius:9px; border:1px solid var(--line); background:var(--paper); color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; flex:none}
+.modal-close:hover{border-color:var(--line-strong)}
+.modal-close svg{width:18px; height:18px}
+.modal-body{overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:14px; background:var(--surface-2)}
+.modal-body img{width:100%; display:block; border:1px solid var(--line); border-radius:8px; background:#fff}
+@media (max-width:560px){ .modal{padding:0} .modal-panel{width:100%; height:100%; max-height:100%; border-radius:0} }
+
+/* ---- mobile polish ---- */
+@media (max-width:640px){
+  section.block{padding:46px 0}
+  .hero{padding:32px 0 24px}
+  .eyebrow{font-size:11px; letter-spacing:.1em}
+  .proof-cell{padding:20px 16px}
+  .cards{gap:16px}
+}
 
 /* ---- Skills ---- */
 .skills{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
@@ -301,7 +330,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <span class="chip">Client-facing · cross-functional</span>
       </div>
       <div class="cta">
-        <a class="btn btn-primary" href="#resume">
+        <a class="btn btn-primary" href="assets/Bharath_Naveen_Resume.pdf" data-resume>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l4 4v14H5V3zM15 3v5h5M8 13h8M8 17h8"/></svg>
           View résumé
         </a>
@@ -472,18 +501,24 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 <section class="block" id="resume">
   <div class="wrap">
     <div class="sec-head"><span class="idx">03</span><h2>Résumé</h2></div>
-    <p class="sec-sub">The full picture, right here on the page. No download required.</p>
-    <div class="resume-shell">
-      <div class="resume-pages" aria-label="Résumé pages">
-        <a href="assets/resume-p1.png" target="_blank" rel="noopener"><img src="assets/resume-p1.png" alt="Bharath Naveen résumé, page 1"></a>
-        <a href="assets/resume-p2.png" target="_blank" rel="noopener"><img src="assets/resume-p2.png" alt="Bharath Naveen résumé, page 2"></a>
-      </div>
-      <div class="resume-actions">
-        <a class="btn btn-primary" href="assets/Bharath_Naveen_Resume.pdf" download="Bharath_Naveen_Resume.pdf">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-          Download PDF
-        </a>
-        <span class="resume-hint">Tap a page to view it full size</span>
+    <p class="sec-sub">Preview my full résumé in one click, or download the PDF to keep.</p>
+    <div class="resume-cta">
+      <a class="resume-thumb" href="assets/Bharath_Naveen_Resume.pdf" data-resume aria-label="Open résumé preview">
+        <img src="assets/resume-p1.png" alt="Résumé preview">
+      </a>
+      <div class="rc-body">
+        <h3>My résumé, in full</h3>
+        <p>Open a clean preview right here on the page, or grab the PDF to keep. No leaving the site.</p>
+        <div class="rc-actions">
+          <a class="btn btn-primary btn-sm" href="assets/Bharath_Naveen_Resume.pdf" data-resume>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            View résumé
+          </a>
+          <a class="btn btn-ghost btn-sm" href="assets/Bharath_Naveen_Resume.pdf" download="Bharath_Naveen_Resume.pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            Download PDF
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -549,6 +584,26 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 </section>
 </main>
 
+<div class="modal" id="resumeModal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Bharath Naveen résumé">
+    <div class="modal-bar">
+      <span class="mt">Résumé</span>
+      <a class="btn btn-primary btn-sm" href="assets/Bharath_Naveen_Resume.pdf" download="Bharath_Naveen_Resume.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+        Download PDF
+      </a>
+      <button class="modal-close" data-close aria-label="Close résumé preview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <img src="assets/resume-p1.png" alt="Résumé page 1">
+      <img src="assets/resume-p2.png" alt="Résumé page 2">
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="wrap foot-inner">
     <span>&copy; <span id="yr"></span> Bharath Naveen · Tucson, AZ</span>
@@ -564,5 +619,14 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
     root.setAttribute('data-theme', cur()==='dark'?'light':'dark');
   });
   document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+(function(){
+  var modal=document.getElementById('resumeModal'); if(!modal) return;
+  var lastFocus=null;
+  function open(e){ if(e){e.preventDefault();} lastFocus=document.activeElement; modal.hidden=false; document.body.style.overflow='hidden'; var c=modal.querySelector('.modal-close'); if(c){c.focus();} }
+  function close(){ modal.hidden=true; document.body.style.overflow=''; if(lastFocus&&lastFocus.focus){lastFocus.focus();} }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-resume]'), function(o){ o.addEventListener('click', open); });
+  Array.prototype.forEach.call(modal.querySelectorAll('[data-close]'), function(c){ c.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !modal.hidden){ close(); } });
 })();
 </script>
