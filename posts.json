@@ -1,0 +1,10 @@
+[
+  {
+    "slug": "building-autorisk",
+    "title": "Building AutoRisk: turning NHTSA data into a used-car reliability score",
+    "date": "2026-08-30",
+    "summary": "How I'm combining NHTSA complaints, recalls, and depreciation into a single reliability score to help first-time buyers spot a safe cheap car.",
+    "tags": ["AutoRisk", "Machine Learning", "NLP", "Streamlit"],
+    "readingMins": 5
+  }
+]
