@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bharath Naveen</title>
-<meta name="description" content="Bharath Naveen — Data Scientist, Machine Learning Engineer, Data Analyst, and Forward Deployed Engineer. Three years on Microsoft products; production ML and analytics live on AWS.">
+<meta name="description" content="Bharath Naveen, Data Scientist, Machine Learning Engineer, Data Analyst, and Forward Deployed Engineer. Three years on Microsoft products; production ML and analytics live on AWS.">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -110,7 +110,7 @@ p{margin:0}
   transition:color .15s, background .15s;
 }
 .nav-links a:hover{color:var(--ink); background:var(--surface-2)}
-@media (max-width:720px){ .nav-links a.jump{display:none} }
+@media (max-width:960px){ .nav-links a.jump{display:none} }
 .ttoggle{
   display:inline-flex; align-items:center; justify-content:center;
   width:38px; height:38px; border-radius:9px; border:1px solid var(--line);
@@ -352,6 +352,8 @@ section.block{padding:64px 0}
 @media (max-width:760px){ .about-grid{grid-template-columns:1fr; gap:30px} }
 .about p{color:var(--ink-soft); font-size:17px; max-width:60ch}
 .about p + p{margin-top:16px}
+.about-grid > *{min-width:0}
+.contact-card .cv{overflow-wrap:anywhere}
 .contact-card{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:26px; box-shadow:var(--shadow-sm)}
 .tint .contact-card{background:var(--paper)}
 .contact-card h3{font-size:22px}
@@ -387,7 +389,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 .mobile-menu a{padding:14px 12px; border-radius:10px; font-size:16px; font-weight:500; color:var(--ink-soft); border-bottom:1px solid var(--line)}
 .mobile-menu a:last-child{border-bottom:none}
 .mobile-menu a:active,.mobile-menu a:hover{background:var(--surface-2); color:var(--ink)}
-@media (max-width:720px){
+@media (max-width:960px){
   .nav-links{display:none}
   .nav-toggle{display:inline-flex; align-items:center; justify-content:center}
   .nav-right{margin-left:auto}
@@ -403,14 +405,15 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 
 /* hero load-in */
 @keyframes heroUp{from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none}}
-.hero .eyebrow,.hero h1,.hero .lead,.hero .chips,.hero .cta,.portrait-wrap{opacity:0; animation:heroUp .75s cubic-bezier(.22,.61,.36,1) forwards}
+.hero .eyebrow,.hero h1,.hero .lead,.hero .now-line,.hero .chips,.hero .cta,.portrait-wrap{opacity:0; animation:heroUp .75s cubic-bezier(.22,.61,.36,1) forwards}
 .hero .eyebrow{animation-delay:.04s}
 .hero h1{animation-delay:.12s}
 .hero .lead{animation-delay:.22s}
+.hero .now-line{animation-delay:.27s}
 .hero .chips{animation-delay:.32s}
 .hero .cta{animation-delay:.42s}
 .portrait-wrap{animation-delay:.18s}
-@media (prefers-reduced-motion:reduce){ .hero .eyebrow,.hero h1,.hero .lead,.hero .chips,.hero .cta,.portrait-wrap{opacity:1; animation:none} }
+@media (prefers-reduced-motion:reduce){ .hero .eyebrow,.hero h1,.hero .lead,.hero .now-line,.hero .chips,.hero .cta,.portrait-wrap{opacity:1; animation:none} }
 
 /* ============ BRAND LOGO + ORG LOGOS ============ */
 .brand{display:inline-flex; align-items:center; gap:10px}
@@ -419,11 +422,20 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 .orglogo-img{display:block; width:auto; margin:0 0 11px}
 .orglogo-img.tcs{height:34px}
 .orglogo-img.ua{height:60px; border-radius:8px; box-shadow:var(--shadow-sm)}
-.tcs-d{display:none}
-:root[data-theme="dark"] .tcs-l{display:none}
-:root[data-theme="dark"] .tcs-d{display:block}
-@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .tcs-l{display:none} :root:not([data-theme="light"]) .tcs-d{display:block} }
+.orglogo-img.hs{height:30px}
+.tcs-d,.hs-d{display:none}
+:root[data-theme="dark"] .tcs-l,:root[data-theme="dark"] .hs-l{display:none}
+:root[data-theme="dark"] .tcs-d,:root[data-theme="dark"] .hs-d{display:block}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .tcs-l,:root:not([data-theme="light"]) .hs-l{display:none} :root:not([data-theme="light"]) .tcs-d,:root:not([data-theme="light"]) .hs-d{display:block} }
 .orgmeta{font-size:14.5px; color:var(--muted)}
+.xp + .orglockup{margin-top:40px}
+.xrow.now::before{background:var(--accent); box-shadow:0 0 0 5px color-mix(in srgb, var(--accent) 22%, transparent)}
+/* hero "currently" line */
+.now-line{display:inline-flex; align-items:center; gap:10px; margin-top:18px; padding:7px 14px; border:1px solid var(--line); border-radius:999px; background:var(--surface); font-size:14.5px; color:var(--ink-soft); box-shadow:var(--shadow-sm)}
+.now-line b{color:var(--ink); font-weight:600}
+.now-line .now-dot{flex:none; width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent)}
+.now-line .now-k{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-strong)}
+@media (max-width:560px){ .now-line{border-radius:14px; align-items:flex-start} .now-line .now-dot{margin-top:5px} }
 </style>
 </head>
 <body>
@@ -473,7 +485,8 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
     <div>
       <p class="eyebrow">Data Scientist · Machine Learning Engineer · Data Analyst · Forward Deployed Engineer</p>
       <h1>Bharath Naveen</h1>
-      <p class="lead">I turn <b>messy data into decisions</b> and ship the <b>production systems teams depend on</b>. Data science, machine learning, and analytics, taken end to end, from exploratory analysis to deployed models on AWS.</p>
+      <p class="lead">I turn <b>messy data into decisions</b>, and ship the <b>models and pipelines</b> that put them into production, where <b>teams rely on them</b>. Data science, machine learning, and analytics, taken end to end, from exploratory analysis to <b>deployed models on AWS</b>.</p>
+      <a class="now-line" href="#experience"><span class="now-dot" aria-hidden="true"></span><span><span class="now-k">Currently</span>&nbsp; <b>LLM evaluation &amp; red-teaming</b>, contract with Handshake AI</span></a>
       <div class="chips">
         <span class="chip"><b>MS</b>&nbsp;Machine Learning · Arizona</span>
         <span class="chip">GPA <b>3.89</b></span>
@@ -619,7 +632,18 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 <section class="block tint" id="experience">
   <div class="wrap">
     <div class="sec-head"><span class="idx">02</span><h2>Experience</h2></div>
-    <p class="sec-sub">Three years at Tata Consultancy Services on the data and analytics side of <b>Microsoft products</b>: a client-facing, cross-functional role owning the dashboards, SQL, and Python automation that stakeholders made release decisions from.</p>
+    <p class="sec-sub">Currently evaluating and red-teaming <b>large language models</b> on contract with Handshake AI. Before that, three years at Tata Consultancy Services on the data and analytics side of <b>Microsoft products</b>: a client-facing, cross-functional role owning the dashboards, SQL, and Python automation that stakeholders made release decisions from.</p>
+    <div class="orglockup">
+      <img class="orglogo-img hs hs-l" src="assets/handshake-black.png" alt="Handshake AI">
+      <img class="orglogo-img hs hs-d" src="assets/handshake-white.png" alt="Handshake AI">
+      <div class="orgmeta">Contract · Remote · Current</div>
+    </div>
+    <div class="xp">
+      <div class="xrow now">
+        <div class="xtop"><span class="xrole">AI Training &amp; Evaluation Contractor</span><span class="xco">Handshake AI</span><span class="xdate">Sep 2026 – Present</span></div>
+        <p class="xbody">Evaluate and <b>red-team LLM outputs</b>, designing prompts that surface reasoning failures and edge cases, and write the <b>structured rationales and feedback</b> used to improve model performance.</p>
+      </div>
+    </div>
     <div class="orglockup">
       <img class="orglogo-img tcs tcs-l" src="assets/tcsblack.png" alt="Tata Consultancy Services">
       <img class="orglogo-img tcs tcs-d" src="assets/tcswhite.png" alt="Tata Consultancy Services">
@@ -760,6 +784,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
       <div class="sec-head"><span class="idx">07</span><h2>About</h2></div>
       <p>I am a data scientist and machine learning engineer who likes owning the full arc of a problem: taking something ambiguous and messy, doing the exploratory analysis to understand it, and building it all the way through to a deployed system other people can depend on.</p>
       <p>I hold a Master&rsquo;s in Machine Learning (University of Arizona, GPA 3.89) and spent three years before it at Tata Consultancy Services on the Microsoft account, in a client-facing role turning raw data into decisions and shipping the pipelines and reporting behind them. That mix, technical depth plus working directly with stakeholders, is exactly what data science, analytics, and forward-deployed roles ask for. I am open to relocating.</p>
+      <p>Right now I am doing contract work with Handshake AI, evaluating and red-teaming large language model outputs. It has given me a close look at where LLMs break, which is the kind of judgment teams need when they put models in front of real users.</p>
     </div>
     <aside class="contact-card" id="contact">
       <h3>Let&rsquo;s talk</h3>
@@ -866,7 +891,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
     rail.addEventListener('click', function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } }, true);
     if(!reduce && 'IntersectionObserver' in window){
       rail.classList.add('js-anim');
-      var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(en.isIntersecting){ rail.classList.add('reveal'); io.disconnect(); } }); }, {threshold:.12});
+      var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(en.isIntersecting){ rail.classList.add('reveal'); } else { rail.classList.remove('reveal'); } }); }, {threshold:.12});
       io.observe(rail);
     }
   });
@@ -893,7 +918,11 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
     while(s.previousElementSibling){ s=s.previousElementSibling; if(s.classList && s.classList.contains('rv')) i++; }
     el.style.transitionDelay=(Math.min(i,6)*0.07)+'s';
   });
-  var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); }, {threshold:.12, rootMargin:'0px 0px -7% 0px'});
+  /* replays every time: fades in once 12% is on screen, resets only after fully leaving the viewport */
+  var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){
+    if(en.intersectionRatio>=.12){ en.target.classList.add('in'); }
+    else if(!en.isIntersecting){ en.target.classList.remove('in'); }
+  }); }, {threshold:[0,.12]});
   targets.forEach(function(el){ io.observe(el); });
 })();
 /* ---- stat count-up ---- */
@@ -910,7 +939,10 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
     requestAnimationFrame(tick);
   }
   if(!('IntersectionObserver' in window)){ nums.forEach(run); return; }
-  var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(en.isIntersecting){ run(en.target); io.unobserve(en.target); } }); }, {threshold:.5});
+  var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){
+    if(en.intersectionRatio>=.5){ if(!en.target._on){ en.target._on=true; run(en.target); } }
+    else if(!en.isIntersecting){ en.target._on=false; en.target.textContent=fmt(0,parseInt(en.target.getAttribute('data-dec'),10)||0); }
+  }); }, {threshold:[0,.5]});
   nums.forEach(function(n){ io.observe(n); });
 })();
 </script>

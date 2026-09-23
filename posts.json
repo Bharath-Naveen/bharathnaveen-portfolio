@@ -1,10 +1,28 @@
 [
   {
+    "slug": "trying-to-make-ai-fail",
+    "title": "What trying to make AI fail taught me about testing models",
+    "date": "2026-09-23",
+    "summary": "Contract AI evaluation work with Handshake AI: why fair tests are so hard for strong models to fail, and the testing habits I picked up that carry over to data science.",
+    "tags": [
+      "AI Evaluation",
+      "Model Testing",
+      "Handshake AI",
+      "Validation"
+    ],
+    "readingMins": 7
+  },
+  {
     "slug": "building-autorisk",
     "title": "Building AutoRisk: turning NHTSA data into a used-car reliability score",
     "date": "2026-08-30",
     "summary": "How I'm combining NHTSA complaints, recalls, and depreciation into a single reliability score to help first-time buyers spot a safe cheap car.",
-    "tags": ["AutoRisk", "Machine Learning", "NLP", "Streamlit"],
+    "tags": [
+      "AutoRisk",
+      "Machine Learning",
+      "NLP",
+      "Streamlit"
+    ],
     "readingMins": 5
   }
 ]
