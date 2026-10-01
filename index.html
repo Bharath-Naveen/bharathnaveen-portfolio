@@ -249,6 +249,8 @@ section.block{padding:64px 0}
 .pcard .pfoot{margin-top:18px; padding-top:15px; border-top:1px solid var(--line); display:flex; gap:14px; align-items:center; flex-wrap:wrap}
 .pcard .pfoot .link::after{content:""; position:absolute; inset:0; z-index:1; border-radius:16px}
 .pcard:hover .pfoot .link{text-decoration:underline}
+.pcard .pfoot .trylink{position:relative; z-index:2; font-weight:600; font-size:13.5px; padding:6px 12px; border-radius:9px; border:1px solid var(--accent); color:var(--accent-strong); margin-left:auto}
+.pcard .pfoot .trylink:hover{background:var(--accent-wash)}
 
 /* rail motion + polish */
 .pcard{transition:border-color .18s ease, box-shadow .22s ease, transform .22s cubic-bezier(.22,.61,.36,1)}
@@ -568,7 +570,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <h3>Phishing Detection System</h3>
         <p class="pwhat">Scores any URL on demand and returns a <b>likely-phishing, uncertain, or likely-legitimate</b> verdict with the reasons behind it, sending uncertain cases to review. A five-layer pipeline: ML triage, live page capture, DOM analysis, rule-based brand checks, and a deterministic adjudication layer. On 136 real brand sites it never trained on, it flagged <b>4</b> as phishing. Solo MS capstone, containerized with Docker.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">LightGBM</span><span class="pill">XGBoost</span><span class="pill">Playwright</span><span class="pill">Streamlit</span><span class="pill">Docker</span><span class="pill">pytest</span></div>
-        <div class="pfoot"><a class="link" href="projects/phishing-detection-system.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <div class="pfoot"><a class="link" href="projects/phishing-detection-system.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="trylink" href="projects/phishing-detection-system.html#demo">Try it</a></div>
       </article>
 
       <!-- PROJECT CARD -->
