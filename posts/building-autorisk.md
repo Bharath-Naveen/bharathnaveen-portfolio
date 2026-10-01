@@ -3,7 +3,7 @@ Buying your first used car on a tight budget is mostly a leap of faith. You are 
 ![A row of used cars for sale on a dealership lot with bright price stickers](assets/autorisk-lot.jpg)
 *Image generated with ChatGPT, for illustration.*
 
-This is the first build log for it. The project is still in progress, so think of this as notes from the middle of the work rather than a tidy postmortem.
+This is the first build log for it. The project is still in progress: so far I have built the NHTSA ingestion pipeline for 30 popular 2012 to 2014 models, and the NLP, the depreciation model, and the app come next. Think of this as notes from the middle of the work rather than a tidy postmortem.
 
 ## Why this matters right now
 
@@ -31,7 +31,7 @@ The complaints are the interesting part, because they are free text. Someone typ
 
 ## Turning free text into patterns
 
-This is where the NLP comes in. Rather than trying to read every complaint, I clean the text and use **TF-IDF** to turn each one into a vector, then run **KMeans** clustering to group them into recurring failure patterns.
+This is where the NLP comes in, and it is the next piece I am building. Rather than trying to read every complaint, the plan is to clean the text, use **TF-IDF** to turn each one into a vector, and run **KMeans** clustering to group them into recurring failure patterns.
 
 The goal is not to label every complaint perfectly. It is to surface the *shape* of a car's problems: is this a model where complaints cluster around the engine and transmission, or around trim and electronics? A cluster of expensive drivetrain failures should weigh very differently from a cluster of squeaky-door complaints.
 
@@ -39,11 +39,11 @@ The goal is not to label every complaint perfectly. It is to surface the *shape*
 
 ## Adding cost to the picture
 
-Reliability is only half the story. A car can be mechanically solid and still be a bad buy if it bleeds value. So alongside the failure clustering, I model **depreciation** with **XGBoost**, so the score reflects not just "will it break" but "will it hold its value."
+Reliability is only half the story. A car can be mechanically solid and still be a bad buy if it bleeds value. So alongside the failure clustering, I plan to model **depreciation** with **XGBoost**, so the score reflects not just "will it break" but "will it hold its value."
 
 ## Bringing it together
 
-The pieces combine into a single **composite reliability score**, served through a **Streamlit** app so anyone can type in a car and get a readable answer with the reasons behind it. Under the hood it stays modular and Docker-ready, so I can swap or retrain any piece without rewiring the whole thing.
+The plan is to combine the pieces into a single **composite reliability score** behind a simple app, so anyone can type in a car and get a readable answer with the reasons behind it. I am keeping the code modular, so I can swap or retrain any piece without rewiring the whole thing.
 
 ## What's next
 
@@ -51,6 +51,6 @@ A few things I am still working through:
 
 1. Weighting the failure clusters by severity and repair cost, not just frequency.
 2. Validating the score against something external so it is not just internally consistent.
-3. Making the Streamlit output explain itself clearly, since a score no one trusts is a score no one uses.
+3. Making the app explain itself clearly, since a score no one trusts is a score no one uses.
 
 I will post updates here as each piece lands. If you want to follow the code, it lives on [GitHub](https://github.com/Bharath-Naveen/AutoRisk).
