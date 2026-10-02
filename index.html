@@ -438,6 +438,45 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 .now-line .now-dot{flex:none; width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent)}
 .now-line .now-k{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-strong)}
 @media (max-width:560px){ .now-line{border-radius:14px; align-items:flex-start} .now-line .now-dot{margin-top:5px} }
+/* mobile fit: hero column may shrink, long pills wrap instead of widening the page */
+.hero-grid > *{min-width:0}
+@media (max-width:560px){
+  .hero .eyebrow{letter-spacing:.08em}
+  .now-line{display:flex; max-width:100%; font-size:13.5px; padding:8px 12px; line-height:1.4}
+  .now-line .now-k{display:block; font-size:10.5px}
+  .chip{white-space:normal; max-width:100%}
+  .hero .cta .btn{flex:1 1 calc(50% - 6px); justify-content:center}
+  .xrole{font-size:18px; line-height:1.2}
+  .xdate{margin-left:0; flex-basis:100%}
+  .xrow{padding-left:22px}
+}
+/* resume preview: tap to zoom on phones */
+@media (max-width:700px){
+  .modal-body{overflow:auto}
+  .modal-body img{cursor:zoom-in}
+  .modal-body img.zoomed{width:230%; max-width:none; cursor:zoom-out}
+  .modal-body::before{content:"Tap the page to zoom"; display:block; text-align:center; font-size:12.5px; color:var(--muted); margin-bottom:8px}
+}
+
+/* ---- Org banners: photo (or brand pattern) fading in behind each logo ---- */
+.orglockup.photo{position:relative; isolation:isolate; overflow:hidden; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-height:148px; padding:22px 24px; border:1px solid var(--line); border-radius:14px}
+.orglockup.photo::before{content:""; position:absolute; inset:0 0 0 30%; z-index:-1; background:var(--photo) var(--pos,center)/cover no-repeat; opacity:.62; filter:saturate(.8); -webkit-mask-image:linear-gradient(to right, transparent 0, #000 var(--fade,62%)); mask-image:linear-gradient(to right, transparent 0, #000 var(--fade,62%))}
+.orglockup.photo .orgmeta{max-width:30ch}
+.orglockup.photo .orglogo-img.tcs{height:42px}
+.orglockup.photo.remote{--hs:#D3FB52}
+.orglockup.photo.remote::before{inset:0 0 0 34%; opacity:1; filter:none; background:radial-gradient(circle, var(--hs) 1.5px, transparent 1.9px) 0 0/20px 20px, linear-gradient(to right, transparent, #0B1016 85%)}
+:root[data-theme="dark"] .orglockup.photo::before{opacity:.42}
+:root[data-theme="dark"] .orglockup.photo.remote::before{opacity:.8; background:radial-gradient(circle, var(--hs) 1.4px, transparent 1.8px) 0 0/20px 20px, linear-gradient(to right, transparent, color-mix(in srgb, var(--hs) 12%, transparent))}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .orglockup.photo::before{opacity:.42}
+  :root:not([data-theme="light"]) .orglockup.photo.remote::before{opacity:.8; background:radial-gradient(circle, var(--hs) 1.4px, transparent 1.8px) 0 0/20px 20px, linear-gradient(to right, transparent, color-mix(in srgb, var(--hs) 12%, transparent))}
+}
+@media (max-width:900px){ .orglockup.photo::before{inset:0 0 0 44%} .orglockup.photo .orgmeta{text-shadow:0 0 5px var(--surface), 0 0 10px var(--surface)} }
+@media (max-width:560px){
+  .orglockup.photo{min-height:120px; padding:18px}
+  .orglockup.photo::before{inset:0 0 0 18%; opacity:.3}
+  .orglockup.photo.remote::before{inset:0 0 0 70%}
+}
 </style>
 </head>
 <body>
@@ -488,7 +527,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
       <p class="eyebrow">Data Scientist · Machine Learning Engineer · Data Analyst · Forward Deployed Engineer</p>
       <h1>Bharath Naveen</h1>
       <p class="lead">I turn <b>messy data into decisions</b>, and build the <b>models and pipelines</b> behind them. Data science, machine learning, and analytics, taken end to end, from exploratory analysis to a <b>containerized ML system</b>. I also contributed to a <b>production AWS analytics platform</b>.</p>
-      <a class="now-line" href="#experience"><span class="now-dot" aria-hidden="true"></span><span><span class="now-k">Currently</span>&nbsp; <b>LLM evaluation</b>, contract with Handshake AI</span></a>
+      <a class="now-line" href="#experience"><span class="now-dot" aria-hidden="true"></span><span><span class="now-k">Currently</span> <b>LLM evaluation</b>, contract with Handshake AI</span></a>
       <div class="chips">
         <span class="chip"><b>MS</b>&nbsp;in Information Science (Machine Learning) · Arizona</span>
         <span class="chip">GPA <b>3.89</b></span>
@@ -635,7 +674,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
   <div class="wrap">
     <div class="sec-head"><span class="idx">02</span><h2>Experience</h2></div>
     <p class="sec-sub">Currently designing evaluation challenges for <b>large language models</b> on contract with Handshake AI. Before that, 3+ years at Tata Consultancy Services on the <b>Microsoft account</b>, where I built the dashboards, SQL, and Python automation that stakeholders used for release decisions.</p>
-    <div class="orglockup">
+    <div class="orglockup photo remote">
       <img class="orglogo-img hs hs-l" src="assets/handshake-black.png" alt="Handshake AI">
       <img class="orglogo-img hs hs-d" src="assets/handshake-white.png" alt="Handshake AI">
       <div class="orgmeta">Contract · Remote · Current</div>
@@ -646,7 +685,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <p class="xbody">Design <b>evaluation challenges</b> that test the reasoning of large language models, and write <b>structured feedback</b> on model behavior.</p>
       </div>
     </div>
-    <div class="orglockup">
+    <div class="orglockup photo" style="--photo:url(assets/bg-tcs.jpg); --pos:center 88%">
       <img class="orglogo-img tcs tcs-l" src="assets/tcsblack.png" alt="Tata Consultancy Services">
       <img class="orglogo-img tcs tcs-d" src="assets/tcswhite.png" alt="Tata Consultancy Services">
       <div class="orgmeta">Microsoft account · 3+ years</div>
@@ -671,7 +710,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 <section class="block" id="education">
   <div class="wrap">
     <div class="sec-head"><span class="idx">03</span><h2>Education</h2></div>
-    <div class="orglockup">
+    <div class="orglockup photo" style="--photo:url(assets/bg-ua.jpg); --pos:center 77%; --fade:34%">
       <img class="orglogo-img ua" src="assets/UARed.png" alt="The University of Arizona">
       <div class="orgmeta">MS in Information Science (Machine Learning) · GPA 3.89 · Tucson, AZ</div>
     </div>
@@ -731,7 +770,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
 <section class="block tint" id="certs">
   <div class="wrap">
     <div class="sec-head"><span class="idx">06</span><h2>Certifications</h2></div>
-    <p class="sec-sub">Verified credential, linked to its public verification.</p>
+    <p class="sec-sub">Verified credentials, each linked to its public verification on Credly.</p>
     <div class="certs-grid">
 
       <!-- CERT CARD -->
@@ -743,6 +782,37 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
           <a class="vf" href="https://www.credly.com/badges/98060287-4013-4d72-af41-7c59716db093/public_url" target="_blank" rel="noopener">Verify on Credly <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </div>
+
+      <!-- CERT CARD -->
+      <div class="cert">
+        <div class="cert-logo"><svg viewBox="0 0 24 24"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="13" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="13" width="10" height="10" fill="#00A4EF"/><rect x="13" y="13" width="10" height="10" fill="#FFB900"/></svg></div>
+        <div class="cert-b">
+          <h4>Excel Associate</h4>
+          <div class="iss">Microsoft Office Specialist &middot; 2023</div>
+          <a class="vf" href="https://www.credly.com/badges/4a37b610-2d13-473d-be90-e3dc510c03a4/public_url" target="_blank" rel="noopener">Verify on Credly <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
+
+      <!-- CERT CARD -->
+      <div class="cert">
+        <div class="cert-logo"><svg viewBox="0 0 24 24"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="13" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="13" width="10" height="10" fill="#00A4EF"/><rect x="13" y="13" width="10" height="10" fill="#FFB900"/></svg></div>
+        <div class="cert-b">
+          <h4>Word Expert</h4>
+          <div class="iss">Microsoft Office Specialist &middot; 2022</div>
+          <a class="vf" href="https://www.credly.com/badges/79575e30-076a-40ad-b384-4bc301f587b9/public_url" target="_blank" rel="noopener">Verify on Credly <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
+
+      <!-- CERT CARD -->
+      <div class="cert">
+        <div class="cert-logo"><svg viewBox="0 0 24 24"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="13" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="13" width="10" height="10" fill="#00A4EF"/><rect x="13" y="13" width="10" height="10" fill="#FFB900"/></svg></div>
+        <div class="cert-b">
+          <h4>PowerPoint Associate</h4>
+          <div class="iss">Microsoft Office Specialist &middot; 2022</div>
+          <a class="vf" href="https://www.credly.com/badges/b8a7d27d-b70c-4657-a92c-b1c947df03fc/public_url" target="_blank" rel="noopener">Verify on Credly <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
+
     </div>  </div>
 </section>
 
@@ -912,6 +982,10 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
   }); }, {threshold:[0,.5]});
   nums.forEach(function(n){ io.observe(n); });
 })();
+</script>
+<script>
+(function(){var im=document.querySelector('#resumeModal .modal-body img'); if(!im) return;
+im.addEventListener('click',function(){ if(window.matchMedia('(max-width:700px)').matches) im.classList.toggle('zoomed'); });})();
 </script>
 </body>
 </html>
