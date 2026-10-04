@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 640 360">
+<!-- PROJECT THUMBNAIL TEMPLATE. Copy this file to assets/thumbs/<project-slug>.svg and draw the scene
+     inside the <g> below. Rules that keep the set consistent:
+     - Canvas 640x360 (16:9). Keep the drawing inside x 40..600, y 30..330.
+     - Colors: teal #2DC6C0 (main), light teal #5BD8D1 (small highlights), slate #324456 (secondary lines),
+       grey #93A0AE (neutral), off-white #E8EDF2 (one hero object at most), amber #D89143 (ONE accent only,
+       on the element that matters most). Panel fills: #101A24 neutral, #0F2A2C teal, #2A1F10 amber.
+     - Line art, 2.5px strokes, rounded corners. No text, numbers, logos or brand marks.
+     - One idea per image, read left to right or top to bottom: input, process, outcome. -->
+<defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#213040"/></pattern></defs>
+<rect width="640" height="360" fill="#0C1420"/><rect width="640" height="360" fill="url(#g)"/>
+<g fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- scene goes here -->
+</g></svg>
