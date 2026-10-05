@@ -179,6 +179,12 @@
       var a = engine.analyze(url);
       render(a);
       status.textContent = "Analyzed in " + Math.max(1, Math.round(performance.now() - t0)) + " ms, in this tab. Nothing was sent anywhere.";
+      // Page discipline: if the whole checker fits the window, bring all of it into view with its result.
+      var box = out.closest(".pd-box"), r = box && box.getBoundingClientRect();
+      if (r && r.height <= window.innerHeight - 66 && (r.bottom > window.innerHeight || r.top < 64)) {
+        var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({ top: window.scrollY + r.top - 66, behavior: calm ? "auto" : "smooth" });
+      }
     }).catch(function () { /* status already says why */ }).then(function () { btn.disabled = false; });
   }
   form.addEventListener("submit", function (e) { e.preventDefault(); run(); });

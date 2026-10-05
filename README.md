@@ -13,7 +13,7 @@
 </p>
 
 <h2>About me</h2>
-<p>I build <strong>data and machine learning systems</strong>, from database design and ETL pipelines to modeling and evaluation. I came to data through mechanical engineering and <strong>3+ years at Tata Consultancy Services on the Microsoft account</strong>, so I care as much about clean pipelines, data validation, and clear communication as I do about the model itself. I hold an <strong>MS in Information Science (Machine Learning)</strong> from the University of Arizona, and I&#39;m currently doing <strong>LLM evaluation</strong> work with Handshake AI, designing evaluation challenges for model reasoning and writing structured feedback on model behavior. I&#39;m open to <strong>Data Scientist, Machine Learning Engineer, Data Analyst, and Forward Deployed Engineer</strong> roles.</p>
+<p>I build <strong>data and machine learning systems</strong>, from database design and data pipelines to modeling and evaluation. I came to data through mechanical engineering and <strong>3+ years at Tata Consultancy Services on the Microsoft account</strong>, so I care as much about clean pipelines, data validation, and clear communication as I do about the model itself. I hold an <strong>MS in Information Science (Machine Learning)</strong> from the University of Arizona, and I&#39;m currently doing <strong>LLM evaluation</strong> work with Handshake AI, designing evaluation challenges for model reasoning and writing structured feedback on model behavior. I&#39;m open to <strong>Data Scientist, Machine Learning Engineer, Data Analyst, and Forward Deployed Engineer</strong> roles.</p>
 <p>Full writeups on <strong><a href="https://bharathnaveen.com">bharathnaveen.com</a></strong>.</p>
 <table>
 <thead>
@@ -37,7 +37,7 @@
 </tr>
 <tr>
 <td><strong>Data &amp; cloud</strong></td>
-<td>AWS (ECS/Fargate, ECR, DynamoDB, S3), Docker, Docker Compose, Git, CI/CD, MySQL, ER modeling</td>
+<td>AWS (Lambda, DynamoDB, S3), Docker, Docker Compose, Git, CI/CD, MySQL, ER modeling</td>
 </tr>
 <tr>
 <td><strong>BI &amp; delivery</strong></td>
@@ -70,9 +70,9 @@
 <table>
 <tr><th align="left"><a href="https://github.com/Bharath-Naveen/cohort-analytics">Cohort Analytics Platform</a> &nbsp; <sub>Data Analyst · ML Engineer · FDE</sub></th></tr>
 <tr><td>
-<b>Problem:</b> University advisors needed a fast, reliable way to see whether student cohorts were on track, behind, or ahead of their degree pace.<br>
-<b>Contributed:</b> Contributed to the ETL layer of a production university analytics platform on AWS (<b>ECS/Fargate</b>, Julia, <b>DynamoDB</b>): ran and maintained containerized load jobs, worked on degree-progress classification, and shipped through the existing multi-environment <b>CI/CD</b>. The platform is team-built and university-owned.<br>
-<b>Skills:</b> <code>ECS/Fargate</code> <code>ECR</code> <code>DynamoDB</code> <code>ETL pipelines</code> <code>CI/CD</code> <code>Docker</code>
+<b>Problem:</b> A University of Arizona platform that tracks whether students are on pace for their degrees needed restructuring, so data science and ML work could be added to it later.<br>
+<b>Prototyped:</b> As a student contributor on a Vertically Integrated Projects team (spring 2026), built and tested a backend prototype: an <b>AWS Lambda</b> function with a new <b>DynamoDB</b> table and version history in <b>S3</b>, so every degree plan is stored and can revert to the previously approved one. The legacy design kept no plan history, only whole-table backups. It is a prototype, not a production release. The existing platform was built by the university team and is university-owned.<br>
+<b>Skills:</b> <code>AWS Lambda</code> <code>DynamoDB</code> <code>S3</code> <code>Serverless</code> <code>Backend prototyping</code>
 </td></tr>
 </table>
 
