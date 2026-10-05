@@ -240,16 +240,20 @@ section.block{padding:64px 0}
 .pcard .pdate{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted); white-space:nowrap}
 .pcard .tag.wip{background:transparent; border:1px dashed var(--line-strong); color:var(--muted)}
 .pcard h3{font-size:20px; letter-spacing:-.01em}
-.pcard .pwhat{color:var(--ink-soft); font-size:15px; margin-top:9px; flex:1}
+.pcard .pwhat{color:var(--ink-soft); font-size:15px; margin-top:9px; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:5; line-clamp:5; overflow:hidden}
 .pcard .pwhat b{color:var(--ink); font-weight:600}
-.pcard .pstack{display:flex; flex-wrap:wrap; gap:6px; margin-top:16px}
+.pcard .pstack{display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; margin-bottom:18px}
 .pcard{position:relative}
-.pcard .pfoot{margin-top:18px; padding-top:15px; border-top:1px solid var(--line); display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+.pcard .pfoot{margin-top:auto; padding-top:15px; border-top:1px solid var(--line); display:flex; gap:14px; align-items:center; flex-wrap:wrap}
 .pcard .pfoot .link::after{content:""; position:absolute; inset:0; z-index:1; border-radius:16px}
 .pcard:hover .pfoot .link{text-decoration:underline}
 .pcard .pfoot .trylink{position:relative; z-index:2; font-weight:600; font-size:13.5px; padding:6px 12px; border-radius:9px; border:1px solid var(--accent); color:var(--accent-strong); margin-left:auto}
 .pcard .pfoot .trylink:hover{background:var(--accent-wash)}
-.pcard .pthumb{display:block; width:calc(100% + 44px); max-width:none; height:116px; object-fit:contain; background:#0C1420; margin:-22px -22px 16px; border-radius:15px 15px 0 0}
+.pcard .pthumb{display:block; width:calc(100% + 44px); max-width:none; height:128px; object-fit:cover; background:#0C1420; margin:-22px -22px 16px; border-radius:15px 15px 0 0}
+.pcard .ptop{position:absolute; left:14px; right:14px; top:94px; margin:0}
+.pcard .ptop .tag{background:rgba(255,255,255,.08); color:#C4CDD7; border:1px solid #324456}
+.pcard .ptop .tag.wip{background:transparent; border:1px dashed #59636F; color:#C4CDD7}
+.pcard .ptop .pdate{color:#93A0AE}
 
 /* rail motion + polish */
 .pcard{transition:border-color .18s ease, box-shadow .22s ease, transform .22s cubic-bezier(.22,.61,.36,1)}
@@ -602,72 +606,74 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
          THUMBNAIL: each card starts with an <img class="pthumb"> pointing at
          assets/thumbs/<project>.svg. For a new project, draw one from
          assets/thumbs/_template.svg (rules are inside that file).
+         DESCRIPTION: keep it to about 150 characters (4 lines on the card),
+         strongest fact first. The full story goes on the project page.
     ============================================================ -->
     <div class="proj-rail" tabindex="0" aria-label="Projects, scroll horizontally">
 
       <!-- PROJECT CARD -->
       <article class="pcard">
-        <img class="pthumb" src="assets/thumbs/phishing.svg" alt="" width="640" height="360" loading="lazy">
+        <img class="pthumb" src="assets/thumbs/phishing.svg" alt="" width="640" height="236" loading="lazy">
         <div class="ptop"><span class="tag">Machine Learning</span><span class="pdate">2026</span></div>
         <h3>Phishing Detection System</h3>
-        <p class="pwhat">Scores any URL on demand and returns a <b>likely-phishing, uncertain, or likely-legitimate</b> verdict with the reasons behind it, sending uncertain cases to review. A five-layer pipeline: ML triage, live page capture, DOM analysis, rule-based brand checks, and a deterministic adjudication layer. On 136 real brand sites it never trained on, it flagged <b>4</b> as phishing. Solo MS capstone, containerized with Docker.</p>
+        <p class="pwhat">Solo MS capstone that rates any URL <b>likely phishing, uncertain, or likely legitimate</b> and explains why. On 136 real brand sites it never trained on, it flagged <b>4</b>.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">LightGBM</span><span class="pill">XGBoost</span><span class="pill">Playwright</span><span class="pill">Streamlit</span><span class="pill">Docker</span><span class="pill">pytest</span></div>
         <div class="pfoot"><a class="link" href="projects/phishing-detection-system.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="trylink" href="projects/phishing-detection-system.html#demo">Try it</a></div>
       </article>
 
       <!-- PROJECT CARD -->
       <article class="pcard">
-        <img class="pthumb" src="assets/thumbs/cohort.svg" alt="" width="640" height="360" loading="lazy">
-        <div class="ptop"><span class="tag">Data Engineering &middot; AWS</span><span class="pdate">Aug 2026</span></div>
+        <img class="pthumb" src="assets/thumbs/cohort.svg" alt="" width="640" height="236" loading="lazy">
+        <div class="ptop"><span class="tag">Data Engineering &middot; AWS</span><span class="pdate">Spring 2026</span></div>
         <h3>Cohort Analytics Platform</h3>
-        <p class="pwhat">A <b>production platform</b> University of Arizona advisors use to see whether student cohorts are on track, behind, or ahead of their degree pace. I contributed to its ETL layer: I ran and maintained containerized Julia load jobs on ECS/Fargate into DynamoDB, worked on the degree-progress classification, and shipped through the existing CI/CD. Team-built, university-owned, access-restricted.</p>
-        <div class="pstack"><span class="pill">ECS / Fargate</span><span class="pill">DynamoDB</span><span class="pill">Docker / ECR</span><span class="pill">CI/CD</span></div>
-        <div class="pfoot"><a class="link" href="projects/cohort-analytics-platform.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <p class="pwhat">I prototyped a <b>Lambda backend with versioned plan history</b> and revert, as part of a team restructuring a University of Arizona degree-progress platform.</p>
+        <div class="pstack"><span class="pill">AWS Lambda</span><span class="pill">DynamoDB</span><span class="pill">S3</span></div>
+        <div class="pfoot"><a class="link" href="projects/cohort-analytics-platform.html">Explore the interactive walkthrough <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
       <article class="pcard">
-        <img class="pthumb" src="assets/thumbs/spam-detector.svg" alt="" width="640" height="360" loading="lazy">
+        <img class="pthumb" src="assets/thumbs/spam-detector.svg" alt="" width="640" height="236" loading="lazy">
         <div class="ptop"><span class="tag wip">Planned</span><span class="pdate">Not built yet</span></div>
         <h3>YouTube Comment Spam Detector</h3>
-        <p class="pwhat"><b>Planned project.</b> A classifier to flag harmful YouTube comments (phishing scams, adult-bait bots, and engagement spam), labeled with weak supervision and evaluated for recall on the high-risk categories, since a missed scam costs more than a false alarm.</p>
+        <p class="pwhat"><b>Planned project.</b> A classifier to flag scam, bot, and spam comments on YouTube, built to favor recall, since a missed scam costs more than a false alarm.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">scikit-learn</span><span class="pill">YouTube API</span></div>
         <div class="pfoot"><a class="link" href="projects/youtube-comment-spam-detector.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
       <article class="pcard">
-        <img class="pthumb" src="assets/thumbs/loan-default.svg" alt="" width="640" height="360" loading="lazy">
+        <img class="pthumb" src="assets/thumbs/loan-default.svg" alt="" width="640" height="236" loading="lazy">
         <div class="ptop"><span class="tag">Predictive Modeling</span><span class="pdate">2025</span></div>
         <h3>Loan Default Prediction</h3>
-        <p class="pwhat">Predicts which borrowers are likely to <b>default</b>, using German Credit data (1,000 borrowers). I benchmarked five models and tuned the top two for F1; Gradient Boosting came out best at <b>ROC-AUC 0.77</b>. Top drivers: employment duration, checking-account status, years at residence, age, and loan duration.</p>
+        <p class="pwhat">Predicts which borrowers are likely to <b>default</b>, using German Credit data. I benchmarked five models; Gradient Boosting came out best at <b>ROC-AUC 0.77</b>.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">Gradient Boosting</span><span class="pill">Random Forest</span><span class="pill">SVM</span><span class="pill">scikit-learn</span></div>
         <div class="pfoot"><a class="link" href="projects/loan-default-prediction.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
       <article class="pcard">
-        <img class="pthumb" src="assets/thumbs/bn-motors.svg" alt="" width="640" height="360" loading="lazy">
+        <img class="pthumb" src="assets/thumbs/bn-motors.svg" alt="" width="640" height="236" loading="lazy">
         <div class="ptop"><span class="tag">SQL &middot; Data modeling</span><span class="pdate">Oct 2025</span></div>
         <h3>BN Motors Database</h3>
-        <p class="pwhat">A 25-table relational database for a <b>multi-store car dealership</b>, covering sales, service, financing, and parts, with 10 analytical queries and 3 reporting views for inventory aging, gross profit, finance penetration, and lead-to-sale conversion.</p>
+        <p class="pwhat">A 25-table relational database for a <b>multi-store car dealership</b>: sales, service, financing, and parts, with 10 analytical queries and 3 reporting views.</p>
         <div class="pstack"><span class="pill">MySQL</span><span class="pill">SQL</span><span class="pill">ER modeling</span><span class="pill">Window functions</span></div>
         <div class="pfoot"><a class="link" href="projects/bn-motors-database.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
       <article class="pcard">
-        <img class="pthumb" src="assets/thumbs/autorisk.svg" alt="" width="640" height="360" loading="lazy">
+        <img class="pthumb" src="assets/thumbs/autorisk.svg" alt="" width="640" height="236" loading="lazy">
         <div class="ptop"><span class="tag wip">In progress</span><span class="pdate">Jun 2026</span></div>
         <h3>AutoRisk</h3>
-        <p class="pwhat">In progress: a <b>reliability score for used cars</b> in a student's budget. So far I've built the NHTSA ingestion pipeline (complaints, recalls, investigations) for 30 popular 2012 to 2014 models. Complaint clustering, the depreciation model, and the app come next.</p>
+        <p class="pwhat">In progress: a <b>reliability score for used cars</b> in a student's budget. Built so far: the NHTSA data pipeline for 30 popular 2012 to 2014 models.</p>
         <div class="pstack"><span class="pill">Python</span><span class="pill">NHTSA API</span><span class="pill">pandas</span></div>
         <div class="pfoot"><a class="link" href="projects/autorisk.html">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
       </article>
 
       <!-- PROJECT CARD -->
       <article class="pcard">
-        <img class="pthumb" src="assets/thumbs/youtube-pipeline.svg" alt="" width="640" height="360" loading="lazy">
+        <img class="pthumb" src="assets/thumbs/youtube-pipeline.svg" alt="" width="640" height="236" loading="lazy">
         <div class="ptop"><span class="tag">Data Engineering</span><span class="pdate">Mar 2026</span></div>
         <h3>YouTube Analytics Pipeline</h3>
         <p class="pwhat">A class notebook that pulls stats for the <b>top 50 YouTube results</b> for one search query through the YouTube Data API and exports them to CSV and JSON.</p>
@@ -767,7 +773,7 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
         <span class="sk">pandas</span><span class="sk">NumPy</span><span class="sk">Power BI</span><span class="sk">Excel</span><span class="sk">Streamlit</span>
       </div></div>
       <div class="skgroup"><h4>Cloud &amp; Data Engineering</h4><div class="sklist">
-        <span class="sk">AWS (ECS/Fargate, ECR, DynamoDB, S3)</span><span class="sk">Docker</span><span class="sk">Docker Compose</span><span class="sk">Git</span><span class="sk">CI/CD</span><span class="sk">ETL pipelines</span><span class="sk">ER modeling</span><span class="sk">MySQL</span>
+        <span class="sk">AWS (Lambda, DynamoDB, S3)</span><span class="sk">Docker</span><span class="sk">Docker Compose</span><span class="sk">Git</span><span class="sk">CI/CD</span><span class="sk">Data pipelines</span><span class="sk">ER modeling</span><span class="sk">MySQL</span>
       </div></div>
       <div class="skgroup"><h4>Web, Automation &amp; Testing</h4><div class="sklist">
         <span class="sk">Playwright</span><span class="sk">BeautifulSoup</span><span class="sk">pytest</span><span class="sk">Workflow automation</span>
