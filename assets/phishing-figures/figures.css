@@ -65,3 +65,24 @@
   .pfig-lb{padding:60px 8px 12px}
 }
 @media (max-width:560px){ .pfig-rail > .pfig{margin:0} }
+
+/* Page discipline (desktop): a figure and its caption fit one screen together.
+   Wide windows: the figure breaks out of the text column, chart on the left, caption on the right.
+   Medium windows: caption in two columns under a chart that is capped to the window height. */
+@media (min-width:900px) and (max-width:1099px){
+  .pfig figcaption{display:grid; grid-template-columns:1fr 1fr; column-gap:22px; padding:11px 18px 13px}
+  .pfig figcaption .pfig-title{grid-column:1 / -1}
+  .psec .pfig figcaption p, .psec .pfig figcaption p + p{margin-top:6px; font-size:14px; line-height:1.5}
+  .pfig img{width:auto; min-width:0; max-width:100%; max-height:calc(100vh - 318px); margin:0 auto}
+  .pfig-rail > .pfig img{max-height:calc(100vh - 372px)}
+}
+@media (min-width:1100px){
+  .psec > .pfig, .psec > .pfig-rail{--gw:min(1080px, calc(100vw - 96px)); width:var(--gw); margin-left:calc(50% - var(--gw) / 2)}
+  .pfig{display:grid; grid-template-columns:minmax(0,1fr) 304px; grid-template-rows:auto 1fr}
+  .pfig-head{grid-column:1 / -1}
+  .pfig-scroll{grid-column:1; display:flex; align-items:center; justify-content:center; overflow:hidden}
+  .pfig figcaption{grid-column:2; border-top:0; border-left:1px solid var(--line); padding:14px 16px 16px}
+  .pfig img{width:auto; min-width:0; max-width:100%; max-height:calc(100vh - 152px)}
+  .pfig-rail > .pfig img{max-height:calc(100vh - 206px)}
+  .pfig-rail > .pfig{align-self:stretch}
+}

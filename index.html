@@ -480,6 +480,47 @@ footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted)
   .orglockup.photo::before{inset:0 0 0 18%; opacity:.3}
   .orglockup.photo.remote::before{inset:0 0 0 70%}
 }
+/* Page discipline: on desktop each section fits one screen. Tiers follow window height. */
+@media (min-width:900px) and (max-height:900px){
+  section.block{padding:44px 0}
+  .hero{padding:36px 0 30px}
+  .hero .lead{max-width:46ch; margin-top:16px}
+  .chips{margin-top:18px}
+  .cta{margin-top:22px}
+  .sec-sub{max-width:92ch; margin-bottom:22px}
+  .rail-head{margin-bottom:14px}
+  .pcard .pstack{margin-top:12px; margin-bottom:12px}
+  .orglockup.photo{min-height:104px; padding:16px 24px}
+  .xrow{padding-bottom:22px}
+  .xbody{max-width:104ch}
+  .xp + .orglockup{margin-top:44px; scroll-margin-top:84px}
+}
+@media (min-width:900px) and (max-height:760px){
+  section.block{padding:30px 0}
+  .hero{padding:24px 0 22px}
+  .hero h1{font-size:clamp(44px, 5.2vw, 62px); margin-top:10px}
+  .hero .lead{font-size:18px; margin-top:12px}
+  .now-line{margin-top:14px}
+  .chips{margin-top:14px}
+  .cta{margin-top:18px}
+  .sec-head{margin-bottom:8px}
+  .sec-head h2{font-size:32px}
+  .sec-sub{margin-bottom:16px; font-size:15px}
+  .proj-rail{padding-top:10px; padding-bottom:22px}
+  #work.block{padding:24px 0 22px}
+  .pcard{padding:18px}
+  .pcard .pthumb{height:100px; width:calc(100% + 36px); margin:-18px -18px 12px}
+  .pcard .ptop{top:68px}
+  .pcard h3{font-size:19px}
+  .pcard .pwhat{font-size:14.5px; margin-top:6px}
+  .pcard .pfoot{padding-top:11px}
+  .orglockup{margin-bottom:16px}
+  .orglockup.photo{min-height:84px; padding:12px 22px}
+  .orglockup.photo .orglogo-img{margin-bottom:6px}
+  .xrow{padding-bottom:16px}
+  .xbody{font-size:15px; margin-top:5px}
+  .xp + .orglockup{margin-top:34px}
+}
 </style>
 </head>
 <body>
