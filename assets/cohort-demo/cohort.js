@@ -392,26 +392,37 @@
       } else return;
       draw();
     });
-    /* Phones: the game opens full screen from a teaser card. The frame is moved to <body> so the band's clipping does not cut it off. */
+    /* The game opens from a teaser card: a window over the page on desktop, full screen on phones. A link ending in #try opens it directly. The frame is moved to <body> so the band's clipping does not cut it off. */
     var frame = box.parentNode, home = frame.parentNode, mq = window.matchMedia('(max-width:640px)'), shell = null, opener = null;
     if (frame.classList && frame.classList.contains('cd-gbox')) {
-      var tease = el('div', 'cd-tease', '<span class="cd-face" data-mood="good">' + face('good') + '</span><div><b>Play it full screen</b><span>Pick Sam’s courses and watch him react.</span></div><button type="button" class="cd-btn go">Play</button>');
+      var tease = el('div', 'cd-tease', '<span class="cd-face" data-mood="good">' + face('good') + '</span><div><b>Play the mini game</b><span>Pick Sam’s courses and watch him react. It takes about two minutes.</span></div><button type="button" class="cd-btn go">Try it</button>');
       home.insertBefore(tease, frame);
       var closeBtn = frame.querySelector('.cd-close');
       var shut = function () {
         if (!shell) return;
         home.insertBefore(frame, tease.nextSibling); document.body.removeChild(shell); shell = null;
-        document.documentElement.classList.remove('cd-lock'); if (opener) opener.focus();
+        document.documentElement.classList.remove('cd-lock');
+        if (location.hash === '#try') history.replaceState(null, '', location.pathname + location.search);
+        if (opener && opener.focus) opener.focus();
       };
-      tease.querySelector('button').addEventListener('click', function () {
-        opener = this; shell = el('div', 'cd-modal'); shell.setAttribute('role', 'dialog'); shell.setAttribute('aria-modal', 'true'); shell.setAttribute('aria-label', 'Mini game: help Sam plan a semester');
+      var teaseBtn = tease.querySelector('button');
+      var openGame = function (from) {
+        if (shell) return;
+        opener = from || teaseBtn; shell = el('div', 'cd-modal'); shell.setAttribute('role', 'dialog'); shell.setAttribute('aria-modal', 'true'); shell.setAttribute('aria-label', 'Mini game: help Sam plan a semester');
         shell.appendChild(frame); document.body.appendChild(shell); document.documentElement.classList.add('cd-lock');
+        shell.addEventListener('mousedown', function (e) { if (e.target === shell) shut(); });
         box.scrollTop = 0; if (closeBtn) closeBtn.focus();
+      };
+      teaseBtn.addEventListener('click', function () { openGame(this); });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href="#try"]');
+        if (a) { e.preventDefault(); openGame(a); }
       });
+      var fromHash = function () { if (location.hash === '#try') openGame(null); };
+      window.addEventListener('hashchange', fromHash);
       if (closeBtn) closeBtn.addEventListener('click', shut);
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') shut(); });
-      var onMq = function () { if (!mq.matches) shut(); };
-      if (mq.addEventListener) mq.addEventListener('change', onMq); else if (mq.addListener) mq.addListener(onMq);
+      draw(); fromHash(); return;
     }
     draw();
   }

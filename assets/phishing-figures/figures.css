@@ -77,7 +77,6 @@
   .pfig-rail > .pfig img{max-height:calc(100vh - 372px)}
 }
 @media (min-width:1100px){
-  .psec > .pfig, .psec > .pfig-rail{--gw:min(1080px, calc(100vw - 96px)); width:var(--gw); margin-left:calc(50% - var(--gw) / 2)}
   .pfig{display:grid; grid-template-columns:minmax(0,1fr) 304px; grid-template-rows:auto 1fr}
   .pfig-head{grid-column:1 / -1}
   .pfig-scroll{grid-column:1; display:flex; align-items:center; justify-content:center; overflow:hidden}
