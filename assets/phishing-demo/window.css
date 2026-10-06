@@ -1,0 +1,94 @@
+/* Live demo window for the phishing project page (bharathnaveen.com).
+   The demo opens as an app-style window over the page, so the write-up stays a short read.
+   Kept apart from demo.css, which is generated from the phishing repo. */
+
+/* teaser band on the page */
+.psec.pd.pd-teaser{padding:30px 0 32px}
+.pd-teaser-in{display:flex; align-items:center; justify-content:space-between; gap:24px 40px; flex-wrap:wrap}
+.pd-teaser-in > div{flex:1 1 420px; min-width:0}
+.pd-teaser h2{margin-bottom:8px}
+.pd-open{flex:none; display:inline-flex; align-items:center; justify-content:center; font-weight:600; font-size:16px; padding:14px 30px; border-radius:11px; background:var(--accent); color:#062224; box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent)}
+.pd-open:hover{filter:brightness(1.08)}
+
+/* honest numbers now sit inside the Results section of the write-up */
+.pd-inline{margin-top:22px}
+.pd-inline h3{margin-top:0}
+
+/* the window */
+.pd-app{
+  --paper:#0A1A1D; --surface:#12212E; --surface-2:#1A2C3B; --ink:#EAF0F5; --ink-soft:#C6D0DA; --muted:#94A3B2;
+  --line:#25394B; --line-strong:#38516A; --accent:#2DC6C0; --accent-strong:#5BD8D1; --accent-wash:#0F2A2C;
+  --pd-ph:#FF8A80; --pd-ph-wash:#3A1714; --pd-un:#F2C14E; --pd-un-wash:#33280C; --pd-lg:#5FD39A; --pd-lg-wash:#0F2E20;
+  position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center; padding:14px;
+  background:rgba(4,9,14,.72); backdrop-filter:blur(3px); color:var(--ink);
+}
+.pd-app[hidden]{display:none}
+.pd-win{width:min(1180px, 100%); height:min(780px, 100%); display:flex; flex-direction:column; min-height:0; background:var(--surface); border:1.5px solid var(--accent); border-radius:16px; overflow:hidden; box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent), 0 40px 90px -30px rgba(0,0,0,.9)}
+.pd-app .pd-chrome{flex:none; margin:0; padding:9px 12px 9px 16px; gap:14px}
+.pd-app .pd-ctitle{flex:none}
+.pd-tabs{display:flex; gap:4px; margin-left:8px; min-width:0}
+.pd-tabs button{font:inherit; font-size:13.5px; font-weight:600; padding:7px 13px; border-radius:8px; border:1px solid transparent; background:transparent; color:var(--muted); cursor:pointer; white-space:nowrap}
+.pd-tabs button:hover{color:var(--ink)}
+.pd-tabs button[aria-selected="true"]{background:var(--accent-wash); border-color:var(--accent); color:var(--accent-strong)}
+.pd-x{margin-left:auto; flex:none; font:inherit; font-size:13.5px; font-weight:600; padding:7px 14px; border-radius:8px; border:1px solid var(--line-strong); background:var(--surface); color:var(--ink); cursor:pointer}
+.pd-x:hover{border-color:var(--accent); color:var(--accent-strong)}
+.pd-pane{flex:1; min-height:0; display:flex; flex-direction:column; padding:16px 20px 16px; overflow:auto}
+.pd-pane[hidden]{display:none}
+
+/* check tab: the input stays put, the result fills the rest of the window */
+.pd-app .pd-box{flex:1; min-height:0; display:flex; flex-direction:column; margin:0; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; overflow:visible}
+.pd-app .pd-form button{color:#062224}
+.pd-app .pd-privacy, .pd-app .pd-status{max-width:none}
+.pd-app .pd-out{flex:1; min-height:0; overflow:auto; margin-top:12px; padding-top:16px}
+.pd-app .pd-out:empty{display:flex; align-items:center; justify-content:center; border:1.5px dashed var(--line-strong); border-radius:12px; padding:24px; margin-top:14px}
+.pd-app .pd-out:empty::before{content:"Pick an example above or paste a URL. The verdict, what moved the score, and why the judge decided it will show here."; color:var(--muted); font-size:15px; text-align:center; max-width:46ch}
+.pd-app .pd-grid + .pd-note{display:none}
+.pd-app .pd-foot{flex:none; max-width:none; margin-top:10px}
+
+/* replays tab: one replay at a time */
+.pd-app .pd-lede{max-width:none; font-size:15px}
+.pd-railbar{margin-top:12px}
+.pd-gallery{scrollbar-width:none; -ms-overflow-style:none; flex:none}
+.pd-gallery::-webkit-scrollbar{display:none}
+.pd-gallery:focus-visible{outline:2.5px solid var(--accent); outline-offset:4px; border-radius:8px}
+.pd-app .pd-case{background:var(--paper)}
+
+@media (min-width:900px){
+  .pd-app .pd-out:not(:empty){display:grid; grid-template-columns:1fr 2.4fr; grid-template-rows:auto 1fr; column-gap:16px; align-content:start}
+  .pd-app .pd-out > *{grid-column:1}
+  .pd-app .pd-out > .pd-grid{grid-column:2; grid-row:1 / span 2; margin-top:0}
+  .pd-app .pd-out > .pd-note{grid-column:1 / -1}
+  .pd-app .pd-votes{max-width:none}
+}
+@media (min-width:681px){
+  .pd-gallery{display:flex; grid-template-columns:none; align-items:stretch; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; margin-top:10px}
+  .pd-gallery > .pd-case{flex:0 0 100%; scroll-snap-align:start; display:grid; grid-template-columns:1fr 1.12fr; column-gap:24px; align-content:start; padding:18px 20px}
+  .pd-gallery > .pd-case > *{grid-column:1}
+  .pd-gallery > .pd-case > .pd-why{grid-column:2; grid-row:1 / span 5; margin-top:0}
+  .pd-gallery > .pd-case > details{grid-column:1 / -1}
+}
+/* phones: the window is the whole screen, like the cohort mini game */
+@media (max-width:680px){
+  .pd-app{padding:0; backdrop-filter:none}
+  .pd-win{width:100%; height:100%; border:0; border-radius:0; box-shadow:none}
+  .pd-app .pd-chrome{flex-wrap:wrap; gap:8px 10px; padding:10px 12px}
+  .pd-app .pd-dots{display:none}
+  .pd-tabs{order:3; flex:1 1 100%; margin-left:0}
+  .pd-tabs button{flex:1 1 0; padding:9px 8px; font-size:13px; white-space:normal}
+  .pd-pane{padding:14px 14px 18px}
+  .pd-app .pd-box{flex:none}
+  .pd-app .pd-out{overflow:visible; flex:none}
+  .pd-app .pd-out:empty{min-height:150px}
+  .pd-gallery{margin-right:-14px; padding-right:14px}
+  .pd-open{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:no-preference){
+  .pd-app:not([hidden]) .pd-win{animation:pdWin .18s ease-out}
+  @keyframes pdWin{from{opacity:0; transform:translateY(10px) scale(.985)} to{opacity:1; transform:none}}
+}
+
+/* example URLs: make them read as buttons to press */
+.pd-app .pd-examples{margin-top:14px; gap:8px}
+.pd-app .pd-examples span{font-family:"IBM Plex Mono",monospace; font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-strong); margin-right:2px}
+.pd-app .pd-examples button{font-size:12px; padding:6px 9px; border-color:var(--accent); background:var(--accent-wash); color:var(--ink)}
+.pd-app .pd-examples button:hover{background:var(--accent); color:#062224}

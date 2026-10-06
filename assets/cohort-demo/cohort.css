@@ -318,7 +318,6 @@ html.cd-lock, html.cd-lock body{overflow:hidden}
 /* Page discipline (desktop): the mini game and the walkthrough each fit one screen */
 @media (min-width:1100px){
   .psec.cd-game .cd-glede{max-width:none}
-  .psec.cd-game .cd-gbox{--gw:min(1080px, calc(100vw - 96px)); width:var(--gw); margin-left:calc(50% - var(--gw) / 2)}
   .cd-gbox .cd-chrome{margin-bottom:14px}
   .cd-gbox .cd-sb{grid-template-columns:2fr 1fr; gap:0 28px}
   .cd-gbox .cd-sbh b{white-space:nowrap}
@@ -329,21 +328,4 @@ html.cd-lock, html.cd-lock body{overflow:hidden}
   .cd-gbox .cd-pick{margin-top:10px}
   .cd-gbox .cd-match{min-height:150px}
   .cd-gbox .cd-vers{max-height:330px}
-}
-@media (min-width:900px) and (max-height:760px){
-  .psec.cd-game{padding-top:22px}
-  .psec.cd-game h2{font-size:30px; margin:8px 0 6px}
-  .psec.cd-game .cd-glede{font-size:15px}
-  .cd-gbox .cd-brief{font-size:13px; padding:8px 12px}
-  .cd-gbox .cd-match li{padding:2px 0}
-  .cd-gbox .cd-say{min-height:54px; padding:8px 12px}
-  .cd-gbox .cd-chrome{margin-bottom:12px; padding:7px 14px}
-  .psec.cd-game .cd-gbox{padding-bottom:14px}
-  #cd-flow.cd-box{padding:14px 20px}
-  #cd-flow .cd-tabs{margin-bottom:10px}
-  #cd-flow .cd-legend{margin-bottom:8px}
-  #cd-flow .cd-dia{max-height:170px}
-  #cd-flow .cd-panel{margin-top:10px; padding-top:12px; min-height:196px}
-  #cd-flow .cd-panel p{font-size:15px; max-width:84ch}
-  #cd-flow .cd-ctrl{margin-top:10px}
 }
